@@ -1,0 +1,149 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "ui-blog-client": {
+      "root": "apps/ui-blog-client/",
+      "sourceRoot": "apps/ui-blog-client/src",
+      "projectType": "application",
+      "prefix": "blogging-client",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ui-blog-client",
+            "index": "apps/ui-blog-client/src/index.html",
+            "main": "apps/ui-blog-client/src/main.ts",
+            "polyfills": "apps/ui-blog-client/src/polyfills.ts",
+            "tsConfig": "apps/ui-blog-client/tsconfig.app.json",
+            "assets": [
+              "apps/ui-blog-client/src/favicon.ico",
+              "apps/ui-blog-client/src/assets"
+            ],
+            "styles": [
+              "apps/ui-blog-client/src/styles.scss"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ui-blog-client/src/environments/environment.ts",
+                  "with": "apps/ui-blog-client/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/ui-blog-client/ngsw-config.json"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ui-blog-client:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ui-blog-client:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ui-blog-client:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ui-blog-client/tsconfig.app.json",
+              "apps/ui-blog-client/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/ui-blog-client/jest.config.js",
+            "tsConfig": "apps/ui-blog-client/tsconfig.spec.json",
+            "setupFile": "apps/ui-blog-client/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ui-blog-client-e2e": {
+      "root": "apps/ui-blog-client-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/ui-blog-client-e2e/cypress.json",
+            "tsConfig": "apps/ui-blog-client-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ui-blog-client:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ui-blog-client:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/ui-blog-client-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "style": "scss"
+    },
+    "@nrwl/schematics:library": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "ui-blog-client"
+}

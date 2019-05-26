@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>Common</AssemblyName>
+    <RootNamespace>Common</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="RegExValidationAttributes.cs" />
+  </ItemGroup>
+
+</Project>

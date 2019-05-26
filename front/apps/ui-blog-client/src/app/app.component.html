@@ -1,0 +1,38 @@
+<ul *ngIf="userIsLoggedIn()" class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link">{{ username }}</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="logout()">Logout</a>
+  </li>
+</ul>
+
+<div class="container" id="message">
+  <div style="padding: 5px;">
+    <div
+      id="inner-message"
+      *ngIf="message"
+      class="text-center"
+      [ngClass]="{
+        alert: message,
+        'alert-success': message.type === 'success',
+        'alert-danger': message.type === 'error'
+      }"
+    >
+      {{ message.text }}
+      <button
+        type="button"
+        class="close"
+        (click)="removeMessage()"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<router-outlet>
+  <div *ngIf="showLoader" class="loading lds-dual-ring"></div>
+</router-outlet>

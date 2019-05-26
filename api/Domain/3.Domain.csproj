@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>Domain</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="AlertRequest.cs" />
+    <Compile Remove="Card.cs" />
+    <Compile Remove="Device.cs" />
+    <Compile Remove="FirebaseToken.cs" />
+    <Compile Remove="PushLog.cs" />
+    <Compile Remove="School.cs" />
+    <Compile Remove="SchoolBus.cs" />
+    <Compile Remove="StudentCardHistoryItem.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\4.Common.csproj" />
+  </ItemGroup>
+
+</Project>
